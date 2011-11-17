@@ -33,10 +33,10 @@ public class QuickSort extends Thread{
 		System.out.println("");
 		
 		
-		PrintWriter out = new PrintWriter(new FileWriter("mergeOutFile.txt")); 
+		PrintWriter out = new PrintWriter(new FileWriter("quickOutFile.txt")); 
 		out.print(Arrays.toString(quickArray));
 		System.out.println("Your quicksorted file is saved " +
-				"in mergeOutFile.txt");
+				"in quickOutFile.txt");
 		System.out.println("**************************************************"+
 				"********************************************");
 		System.out.println("");
