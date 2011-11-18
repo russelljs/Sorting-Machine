@@ -14,6 +14,11 @@ import java.util.Arrays;
 public class MergeSort extends Thread{
 
 	int iterations;
+
+	long timeStart;
+	long timeEnd;
+	long totalTime;
+	
 	public void run(int mergeArray[]) throws IOException {
 
 		iterations = 0;//gotta reset the iteration counter
@@ -27,12 +32,17 @@ public class MergeSort extends Thread{
 		System.out.println("");
 		
 		//HERE WE GO, AWWW YEAH
+
+		timeStart = System.nanoTime();
 		sort(mergeArray, 0, mergeArray.length-1);
+		timeEnd = System.nanoTime();
+		totalTime = timeEnd - timeStart;
 		
 		//print output
 		System.out.println("Your merge sorted array is:");
 		System.out.println(Arrays.toString(mergeArray));
 		System.out.println("It ran in "+iterations+" iterations.");
+		System.out.println("In terms of CPU time, it took "+totalTime+" nanoseconds.");
 		System.out.println("");
 		
 		
@@ -97,6 +107,7 @@ public class MergeSort extends Thread{
 	public int printIterations()
 	{
 		System.out.println("Iterations for MergeSort: "+iterations);
+		System.out.println("Time in Ns: "+totalTime);
 		return iterations;
 	}//end printIterations
 	

@@ -13,9 +13,12 @@ import java.util.Arrays;
 public class QuickSort extends Thread{
 	
 	int iterations = 0;
-	
+	long timeStart;
+	long timeEnd;
+	long totalTime;
 	public void run(int quickArray[]) throws IOException
 	{
+		
 		iterations = 0;
 		//dialog
 		System.out.println("");
@@ -25,11 +28,15 @@ public class QuickSort extends Thread{
 		System.out.println(Arrays.toString(quickArray));
 		System.out.println("");
 		
+		timeStart = System.nanoTime();
 		sort(quickArray);
+		timeEnd = System.nanoTime();
 		
+		totalTime = timeEnd - timeStart;
 		System.out.println("Your quick sorted array is:");
 		System.out.println(Arrays.toString(quickArray));
 		System.out.println("It ran in "+iterations+" iterations.");
+		System.out.println("In terms of CPU time, it took "+totalTime+" nanoseconds.");
 		System.out.println("");
 		
 		
@@ -41,6 +48,7 @@ public class QuickSort extends Thread{
 				"********************************************");
 		System.out.println("");
 		out.close();
+		
 		
 	}//end run
 	
@@ -62,7 +70,8 @@ public class QuickSort extends Thread{
 
 	        if (end - start >= 1)                   
 	        {
-	                int pivot = array[start];       
+	                int pivot = array[start];//this chooses the first element in the array as the pivot.
+	                //probably not the most efficient
 
 	                while (k > i)                   // while the scan indices from left and right have not met,
 	                {
@@ -70,10 +79,10 @@ public class QuickSort extends Thread{
 	                                i++;                                    // element greater than the pivot
 	                        while (array[k] > pivot && k >= start && k >= i) // from the right, look for the first
 	                            k--;                                        // element not greater than the pivot
-	                        if (k > i)                                       // if the left seekindex is still smaller than
-	                                swap(array, i, k);                      // the right index, swap the corresponding elements
+	                        if (k > i)     // if the left seekindex is still smaller than
+	                                swap(array, i, k);     // the right index, swap the corresponding elements
 	                }//end while
-	                swap(array, start, k);          // after the indices have crossed, swap the last element in
+	                swap(array, start, k); // after the indices have crossed, swap the last element in
 	                                                // the left partition with the pivot 
 	                sort(array, start, k - 1);
 	                sort(array, k + 1, end);
@@ -99,6 +108,7 @@ public class QuickSort extends Thread{
 	public int printIterations()
 	{
 		System.out.println("Iterations for QuickSort: "+iterations);
+		System.out.println("Time in Ns: "+totalTime);
 		return iterations;
 	}//end printIterations
 		
